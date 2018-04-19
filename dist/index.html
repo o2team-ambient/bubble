@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>bubble</title>
+
+  <!-- 不要删除或改变下面这行代码 -->
+
+    <!-- begin REM Zoom 计算 -->
+    <script type="text/javascript">
+      (function (win) {
+        var remCalc = {};
+        var docEl = win.document.documentElement,
+          tid,
+          hasRem = true,
+          hasZoom = true,
+          zoomRuler = 'width',
+          designWidth = 750,
+          designHeight = 1206;
+
+        function refresh() {
+          var width = docEl.clientWidth;
+          var height = docEl.clientHeight;
+          if (width > 768) width = 768;
+          if (hasRem) {
+            var rem = width / 10;
+            docEl.style.fontSize = rem + "px";
+            remCalc.rem = rem;
+            var actualSize = parseFloat(window.getComputedStyle(document.documentElement)["font-size"]);
+            if (actualSize !== rem && actualSize > 0 && Math.abs(actualSize - rem) > 1) {
+              var remScaled = rem * rem / actualSize;
+              docEl.style.fontSize = remScaled + "px";
+            }
+          }
+          if (hasZoom) {
+            var style = document.getElementById('J__style');
+            if (!style) {
+              style = document.createElement('style');
+              style.id = 'J__style';
+            }
+            var r,s;
+            if (zoomRuler === 'height') {
+              r = height / designHeight;
+            } else {
+              r = width / designWidth;
+            }
+            r.toFixed && (r = r.toFixed(5));
+            s = '.__z{zoom:' + r + '} ';
+            s += '.__s{-webkit-transform: scale(' + r + ');transform: scale(' + r + ')}';
+
+            style.innerHTML = s;
+            document.getElementsByTagName('head')[0].appendChild(style);
+          }
+        }
+
+        function dbcRefresh() {
+          clearTimeout(tid);
+          tid = setTimeout(refresh, 100)
+        }
+        win.addEventListener("resize", function () {
+          dbcRefresh()
+        }, false);
+
+        win.addEventListener("pageshow", function (e) {
+          if (e.persisted) {
+            dbcRefresh();
+          }
+        }, false);
+        refresh();
+        if (hasRem) {
+          remCalc.refresh = refresh;
+          remCalc.rem2px = function (d) {
+            var val = parseFloat(d) * this.rem;
+            if (typeof d === "string" && d.match(/rem$/)) {
+              val += "px";
+            }
+            return val;
+          };
+          remCalc.px2rem = function (d) {
+            var val = parseFloat(d) / this.rem;
+            if (typeof d === "string" && d.match(/px$/)) {
+              val += "rem";
+            }
+            return val;
+          };
+          win.remCalc = remCalc;
+        }
+      })(window);
+
+    </script>
+    <!-- end REM Zoom 计算 -->
+<link href="http://jdc.jd.com/demo/ambient_bubble/css/index.css" rel="stylesheet"></head>
+<body>
+  <!-- S 主体内容 -->
+  <div id="o2_main" class="main">
+    <div class="field">
+      <!-- <h1>Bubble</h1> -->
+    </div>
+    <div class="setting">
+      <p class="setting_group">
+        <label for="bubble_num">气泡数量</label>
+        <input type="text" class="num" name="bubble_num" value="30">
+      </p>
+      <p class="setting_group">
+        <label for="bubble_size">气泡宽高</label>
+        <input type="text" name="bubble_size" class="size" value="150，150">
+      </p>
+      <p class="setting_group">
+        <label for="bubble_ease">缓动函数</label>
+        <select class="ease" name="bubble_ease">
+          <option value="linear">linear</option>
+          <option value="ease">ease</option>
+          <option value="ease-in">ease-in</option>
+          <option value="ease-out">ease-out</option>
+          <option value="ease-in-out">ease-in-out</option>
+        </select>
+      </p>
+      <p class="setting_group">
+        <label for="bubble_cubic">贝塞尔曲线</label>
+        <input type="text" name="bubble_cubic" class="cubic" value="cubic-bezier(0.470,0.000,0.745,0.715)">
+      </p>
+      <p class="setting_group">
+        <label for="bubble_shake">摇晃</label>
+        <select class="shake" name="bubble_shake">
+          <option value="true">是</option>
+          <option value="false">否</option>
+        </select>
+      </p>
+      <p class="setting_group">
+        <label for="bubble_scale">增大</label>
+        <select class="scale" name="bubble_scale">
+          <option value="false">否</option>
+          <option value="true">是</option>
+        </select>
+      </p>
+      <p class="setting_group">
+        <label for="bubble_pic">图片地址</label>
+        <input type="text" name="bubble_pic" value="https://img20.360buyimg.com/ling/jfs/t19231/101/1740022916/276990/bd8945f/5ad47a2bN4ec852a3.png，https://img13.360buyimg.com/ling/jfs/t17290/130/1661446065/268718/412bc02a/5ad47a2eNc8614596.png，https://img12.360buyimg.com/ling/jfs/t16603/85/1723180043/158655/307809f2/5ad47a2dN56abcd39.png" class="pic">
+      </p>
+      <p class="setting_group">
+        <input type="submit" value="提交" class="submit">
+      </p>
+      <!-- <p class="setting_group">
+        <input type="file" name="bubble_file" class="file">
+      </p> -->
+    </div>
+  </div>
+  <!-- E 主体内容 -->
+<script type="text/javascript" src="http://jdc.jd.com/demo/ambient_bubble/js/index.js"></script></body>
+</html>
