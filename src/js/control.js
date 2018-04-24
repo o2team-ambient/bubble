@@ -62,7 +62,7 @@ class Control {
     forEach(textures, (texture, key) => {
       const textureController = texturesFolder.add(textures, key).name(`纹理${index++}`)
       textureController.onFinishChange(val => {
-        window.O2_AMBIENT_INIT()
+        window[O2_AMBIENT_INIT]()
       })
     })
     texturesFolder.open()
