@@ -1,5 +1,5 @@
 import { O2_AMBIENT_CLASSNAME } from './const'
-import { getRandomInt } from './utils'
+import { getRandomInt, getRandom } from './utils'
 import debounce from 'lodash/debounce'
 
 class Snow {
@@ -49,6 +49,13 @@ class Snow {
 
   unbindEvents () {
     window.removeEventListener('resize', this.resizeSelf, false)
+  }
+
+  windowResizeHandle (e) {
+    this.canvas.width = window.innerWidth
+    this.canvas.height = window.innerHeight
+    this.width = window.innerWidth
+    this.height = window.innerHeight
   }
 
   initFPS () {
@@ -101,10 +108,10 @@ class Snow {
     const particles = []
     for (let i = 0; i < this.PARTICLE_NUMBER; i++) {
       particles.push({
-        x: Math.random() * this.width,
-        y: Math.random() * this.height,
-        r: this.isTexture ? getRandomInt(16, 32) : (Math.random() * 4) + 1,
-        d: Math.random() * this.PARTICLE_NUMBER,
+        x: getRandom(0, this.width),
+        y: getRandom(0, this.height),
+        r: this.isTexture ? getRandomInt(16, 32) : getRandomInt(1, 5),
+        d: getRandom(0, this.PARTICLE_NUMBER),
         imgIndex: getRandomInt(0, this.textures.length - 1),
       })
     }
@@ -188,25 +195,18 @@ class Snow {
         if (particle.x > width + maxRadius || particle.x < -maxRadius || particle.y > height) {
           // 66.7 % 的粒子
           if (index % 3 > 0) {
-            particle.x = Math.random() * width
+            particle.x = getRandom(0, width)
             particle.y = -maxRadius * 2
           } else if (Math.sin(angle) > 0) {
             particle.x = -maxRadius
-            particle.y = Math.random() * height
+            particle.y = getRandom(0, height)
           } else {
             particle.x = width + maxRadius
-            particle.y = Math.random() * height
+            particle.y = getRandom(0, height)
           }
         }
       })
     }
-  }
-
-  windowResizeHandle (e) {
-    this.canvas.width = window.innerWidth
-    this.canvas.height = window.innerHeight
-    this.width = window.innerWidth
-    this.height = window.innerHeight
   }
 
   destory () {
@@ -215,4 +215,4 @@ class Snow {
   }
 }
 
-module.exports = Snow
+export default Snow

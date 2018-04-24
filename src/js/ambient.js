@@ -24,10 +24,10 @@ function initAmbient () {
     })
 
     preloader.addProgressListener(function (loaded, length) {
-      console.log('loading ', loaded, length, loaded / length)
+      // console.log('loading ', loaded, length, loaded / length)
     })
     preloader.addCompletionListener(function () {
-      console.log('load completed')
+      // console.log('load completed')
       /* eslint-disable no-new */
       snow = new Snow({
         textures: texturesArr.map(imgSrc => preloader.get(imgSrc)),
