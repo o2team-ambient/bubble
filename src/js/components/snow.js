@@ -210,6 +210,7 @@ class Snow {
   }
 
   destory () {
+    this.stop()
     this.unbindEvents()
     this.parent.removeChild(this.canvas)
   }
