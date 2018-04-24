@@ -10,9 +10,11 @@ import {
 } from './components/const'
 import { getParameterByName } from './components/utils'
 import forEach from 'lodash/forEach'
+
+ /* eslint-disable no-unused-vars */
 const isLoop = getParameterByName('loop')
 const isShowController = getParameterByName('controller')
-console.log(isShowController, isLoop)
+// console.log(isShowController, isLoop)
 
 // 非必要配置字段（仅用于展示，如背景颜色、启动/暂停）
 class OtherConfig {
@@ -39,7 +41,6 @@ class Control {
     const config = this.config
     const otherConfig = this.otherConfig
     const gui = new dat.GUI()
-    gui.domElement.parentElement.style.zIndex = 2
     gui.add(otherConfig, 'message').name('配置面板')
     gui.add(otherConfig, 'play').name('播放 / 暂停')
     gui.add(config, 'particleNumber', 3, 100).name('粒子数量').onFinishChange(val => {
@@ -50,6 +51,7 @@ class Control {
     })
     if (!this.isShow) gui.close()
     this.gui = gui
+    this.setGUIzIndex(2)
   }
 
   initTextureGUI () {
@@ -66,6 +68,10 @@ class Control {
     texturesFolder.open()
 
     this.texturesFolder = texturesFolder
+  }
+
+  setGUIzIndex (zIndex) {
+    this.gui.domElement.parentElement.style.zIndex = zIndex
   }
 
   static setBackgroundColor (color) {
