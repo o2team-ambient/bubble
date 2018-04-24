@@ -1,3 +1,4 @@
+import { O2_AMBIENT_CLASSNAME } from './const'
 import { getRandomInt } from './utils'
 import debounce from 'lodash/debounce'
 
@@ -8,7 +9,7 @@ class Snow {
     parent = document.body,
     fps = 30,
     textures = [],
-    className = 'o2_ambient_snow',
+    className = O2_AMBIENT_CLASSNAME,
     particleNumber = 25
   }) {
     this.width = width

@@ -1,6 +1,11 @@
 import Preloader from 'preloader.js'
 import Snow from './components/snow'
 import values from 'lodash/values'
+import {
+  O2_AMBIENT_CONFIG,
+  O2_AMBIENT_INIT,
+  O2_AMBIENT_MAIN
+} from './components/const'
 
 let snow = null
 
@@ -11,7 +16,7 @@ function initAmbient () {
       snow = null
     }
 
-    const config = window.O2_AMBIENT_CONFIG
+    const config = window[O2_AMBIENT_CONFIG]
     const texturesArr = values(config.textures).filter(texture => texture.trim() !== '')
     const preloader = new Preloader({
       resources: texturesArr,
@@ -27,12 +32,9 @@ function initAmbient () {
       snow = new Snow({
         textures: texturesArr.map(imgSrc => preloader.get(imgSrc)),
         particleNumber: config.particleNumber,
-        fps: config.fps,
-        className: config.className,
-        parent: document.querySelector(config.parent)
       })
 
-      window.O2_AMBIENT_MAIN = snow
+      window[O2_AMBIENT_MAIN] = snow
     })
 
     preloader.start()
@@ -41,5 +43,5 @@ function initAmbient () {
   }
 }
 
-window.O2_AMBIENT_INIT = initAmbient
+window[O2_AMBIENT_INIT] = initAmbient
 initAmbient()
