@@ -19,7 +19,7 @@ class OtherConfig {
   constructor () {
     this.message = 'Snow-统一方向'
     this.backgroundColor = '#2f85dc'
-    this.play = function () {
+    this.play = () => {
       window[O2_AMBIENT_MAIN] && window[O2_AMBIENT_MAIN].toggle()
     }
   }
