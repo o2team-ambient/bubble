@@ -1,4 +1,6 @@
 import Preloader from 'preloader.js'
+import './components/modernizr'
+import './components/raf'
 import Snow from './components/snow'
 import values from 'lodash/values'
 import {
@@ -44,4 +46,7 @@ function initAmbient () {
 }
 
 window[O2_AMBIENT_INIT] = initAmbient
-initAmbient()
+
+if (window.Modernizr.requestanimationframe) {
+  initAmbient()
+}
