@@ -11,7 +11,7 @@ import {
 import { getParameterByName } from './components/utils'
 import forEach from 'lodash/forEach'
 
- /* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 const isLoop = getParameterByName('loop')
 const isShowController = getParameterByName('controller')
 // console.log(isShowController, isLoop)

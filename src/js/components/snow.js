@@ -83,7 +83,7 @@ class Snow {
 
     this.textures.forEach((img, index) => {
       this.offWidth += img.width
-      this.offHeight = Math.max(img.height, this.textures[index + 1] || 0)
+      this.offHeight = Math.max(img.height, this.offHeight || 0)
     })
 
     this.offCanvas.width = this.offWidth
