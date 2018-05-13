@@ -1,8 +1,8 @@
 import { O2_AMBIENT_CLASSNAME } from './const'
-import { getRandomInt, getRandom } from './utils'
+import { getRandomInt, getRandom, getDevicePixelRatio, degToRad } from './utils'
 import debounce from 'lodash/debounce'
 
-class Snow {
+class Bubble {
   constructor ({
     width = window.innerWidth,
     height = window.innerHeight,
@@ -12,8 +12,9 @@ class Snow {
     className = O2_AMBIENT_CLASSNAME,
     particleNumber = 25
   }) {
-    this.width = width
-    this.height = height
+    this.devicePixelRatio = getDevicePixelRatio()
+    this.width = width * this.devicePixelRatio
+    this.height = height * this.devicePixelRatio
     this.parent = parent
     this.FPS = fps
     this.textures = textures
@@ -31,9 +32,14 @@ class Snow {
 
   initDOM () {
     const canvas = document.createElement('canvas')
+    const devicePixelRatio = this.devicePixelRatio
     canvas.style.position = 'fixed'
     canvas.style.left = '0'
     canvas.style.top = '0'
+    canvas.style.width = `${this.width / devicePixelRatio}px`
+    canvas.style.height = `${this.height / devicePixelRatio}px`
+    canvas.style.zIndex = -1
+    canvas.style.pointerEvents = 'none'
     canvas.className = this.className
     canvas.width = this.width
     canvas.height = this.height
@@ -52,10 +58,14 @@ class Snow {
   }
 
   windowResizeHandle (e) {
-    this.canvas.width = window.innerWidth
-    this.canvas.height = window.innerHeight
-    this.width = window.innerWidth
-    this.height = window.innerHeight
+    const devicePixelRatio = this.devicePixelRatio
+
+    this.width = window.innerWidth * devicePixelRatio
+    this.height = window.innerHeight * devicePixelRatio
+    this.canvas.width = this.width
+    this.canvas.height = this.height
+    this.canvas.style.width = `${this.width / devicePixelRatio}px`
+    this.canvas.style.height = `${this.height / devicePixelRatio}px`
   }
 
   initFPS () {
@@ -67,11 +77,11 @@ class Snow {
   initTexture () {
     this.isTexture = this.textures.length > 0
     this.draw = this.drawDefault
-    this.maxRadius = 5
+    this.maxRadius = 15
     if (this.isTexture) {
       this.setTexureCache()
       this.draw = this.drawTexture
-      this.maxRadius = 32
+      this.maxRadius = 50
     }
   }
 
@@ -107,12 +117,14 @@ class Snow {
   addParticles () {
     const particles = []
     for (let i = 0; i < this.PARTICLE_NUMBER; i++) {
+      const imgIndex = getRandomInt(0, this.textures.length - 1)
       particles.push({
         x: getRandom(0, this.width),
-        y: getRandom(0, this.height),
-        r: this.isTexture ? getRandomInt(16, 32) : getRandomInt(1, 5),
+        y: getRandom(this.height, 1.5 * this.height),
+        r: (this.isTexture ? this.imgsSize[imgIndex].width : getRandomInt(1, 5)) * (this.devicePixelRatio / 2),
         d: getRandom(0, this.PARTICLE_NUMBER),
-        imgIndex: getRandomInt(0, this.textures.length - 1),
+        a: getRandomInt(-360, 360),
+        imgIndex,
       })
     }
 
@@ -122,14 +134,18 @@ class Snow {
   drawTexture () {
     const ctx = this.ctx
     this.particles.forEach(particle => {
-      ctx.moveTo(particle.x, particle.y)
       const size = this.imgsSize[particle.imgIndex]
-
+      const width = size.width
+      const height = size.height
+      ctx.save()
+      ctx.translate(particle.x + (width / 2), particle.y + (height / 2))
+      ctx.rotate(degToRad(particle.a))
       ctx.drawImage(
         this.offCanvas,
-        size.x, size.y, size.width, size.height,
-        particle.x, particle.y, particle.r, particle.r
+        size.x, size.y, width, height,
+        (-width / 2), (-height / 2), particle.r, particle.r
       )
+      ctx.restore()
     })
   }
 
@@ -180,7 +196,7 @@ class Snow {
       this.ctx.clearRect(0, 0, this.width, this.height)
       this.draw()
 
-      this.angle += 0.01
+      this.angle += 0.05
       const angle = this.angle
       const width = this.width
       const height = this.height
@@ -189,21 +205,11 @@ class Snow {
       this.particles.forEach((particle, index) => {
         // +1 是为了避免负值，导致向上移动
         // 每个粒子均由其密度，影响着下落速度
-        particle.y += Math.cos(angle + particle.d) + 1 + (particle.d / 10)
-        particle.x += Math.sin(angle) * 2
+        particle.y -= Math.cos(angle + (particle.d / 2)) + 1 + (particle.d / 5)
 
-        if (particle.x > width + maxRadius || particle.x < -maxRadius || particle.y > height) {
-          // 66.7 % 的粒子
-          if (index % 3 > 0) {
-            particle.x = getRandom(0, width)
-            particle.y = -maxRadius * 2
-          } else if (Math.sin(angle) > 0) {
-            particle.x = -maxRadius
-            particle.y = getRandom(0, height)
-          } else {
-            particle.x = width + maxRadius
-            particle.y = getRandom(0, height)
-          }
+        if (particle.y < 0) {
+
+          particle.y = getRandom(height, 1.5 * height)
         }
       })
     }
@@ -216,4 +222,4 @@ class Snow {
   }
 }
 
-export default Snow
+export default Bubble

@@ -1,7 +1,7 @@
 import Preloader from 'preloader.js'
 import './components/modernizr'
 import './components/raf'
-import Snow from './components/snow'
+import Bubble from './components/bubble'
 import values from 'lodash/values'
 import {
   O2_AMBIENT_CONFIG,
@@ -9,13 +9,13 @@ import {
   O2_AMBIENT_MAIN
 } from './components/const'
 
-let snow = null
+let bubble = null
 
 function initAmbient () {
   try {
-    if (snow) {
-      snow.destory()
-      snow = null
+    if (bubble) {
+      bubble.destory()
+      bubble = null
     }
 
     const config = window[O2_AMBIENT_CONFIG]
@@ -31,12 +31,12 @@ function initAmbient () {
     preloader.addCompletionListener(function () {
       // console.log('load completed')
       /* eslint-disable no-new */
-      snow = new Snow({
+      bubble = new Bubble({
         textures: texturesArr.map(imgSrc => preloader.get(imgSrc)),
         particleNumber: config.particleNumber,
       })
 
-      window[O2_AMBIENT_MAIN] = snow
+      window[O2_AMBIENT_MAIN] = bubble
     })
 
     preloader.start()
@@ -47,6 +47,6 @@ function initAmbient () {
 
 window[O2_AMBIENT_INIT] = initAmbient
 
-if (window.Modernizr.requestanimationframe) {
+if (window.Modernizr.requestanimationframe && window.Modernizr.csspointerevents) {
   initAmbient()
 }

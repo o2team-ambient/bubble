@@ -19,8 +19,8 @@ const isShowController = getParameterByName('controller')
 // 非必要配置字段（仅用于展示，如背景颜色、启动/暂停）
 class OtherConfig {
   constructor () {
-    this.message = 'Snow-统一方向'
-    this.backgroundColor = '#2f85dc'
+    this.message = '气泡'
+    this.backgroundColor = '#bddaf7'
     this.play = () => {
       window[O2_AMBIENT_MAIN] && window[O2_AMBIENT_MAIN].toggle()
     }
@@ -29,7 +29,6 @@ class OtherConfig {
 
 class Control {
   constructor () {
-    this.isShow = isShowController
     this.config = window[O2_AMBIENT_CONFIG]
     this.otherConfig = new OtherConfig()
     this.initBaseGUI()
@@ -46,10 +45,9 @@ class Control {
     gui.add(config, 'particleNumber', 3, 100, 1).name('粒子数量').onFinishChange(val => {
       window[O2_AMBIENT_INIT]()
     })
-    gui.addColor(otherConfig, 'backgroundColor').name('背景颜色').onFinishChange(val => {
+    gui.addColor(otherConfig, 'backgroundColor').name('背景色(仅演示)').onFinishChange(val => {
       Control.setBackgroundColor(val)
     })
-    if (!this.isShow) gui.close()
     this.gui = gui
     this.setGUIzIndex(2)
   }
@@ -79,5 +77,7 @@ class Control {
   }
 }
 
-/* eslint-disable no-new */
-new Control()
+if (isShowController) {
+  /* eslint-disable no-new */
+  new Control()
+}

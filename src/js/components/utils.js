@@ -17,8 +17,27 @@ function getParameterByName (name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
 }
 
+function getDevicePixelRatio () {
+  let result = 1
+  if (window.devicePixelRatio) {
+    result = window.devicePixelRatio >= 2 ? 2 : 1
+  }
+  return result
+}
+
+function degToRad (deg) {
+  return (Math.PI / 180) * deg
+}
+
+function radToDeg (rad) {
+  return (180 / Math.PI) * rad
+}
+
 export {
   getRandom,
   getRandomInt,
-  getParameterByName
+  getParameterByName,
+  getDevicePixelRatio,
+  degToRad,
+  radToDeg
 }

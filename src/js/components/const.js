@@ -1,4 +1,4 @@
-const ID = 'SNOW_UNIFIED_DIRECTION'
+const ID = 'BUBBLE'
 const id = ID.toLowerCase()
 
 export const O2_AMBIENT_MAIN = `O2_AMBIENT_${ID}_MAIN`
