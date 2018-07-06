@@ -2,13 +2,15 @@
   "name": "bubble",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "ath2 s",
-    "build": "ath2 build",
-    "test": "",
-    "eslint": "eslint */component */page"
+    "start": "am s",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "chenxinyi5",
+  "license": "ISC",
   "dependencies": {
-    "preloader.js": "^1.0.0"
+    "@o2team/ambient-dat.gui": "^0.7.7",
+    "zepto": "^1.2.0"
   }
 }
