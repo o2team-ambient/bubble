@@ -16,7 +16,7 @@ let controlInit = () => {
   // 非必要配置字段（仅用于展示，如背景颜色、启动/暂停）
   class OtherConfig {
     constructor () {
-      this.message = '挂件名'
+      this.message = '泡泡'
       this.backgroundColor = '#bddaf7'
       this.bool = false
       this.play = () => {
