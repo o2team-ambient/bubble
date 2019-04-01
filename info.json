@@ -7,5 +7,7 @@
   "github": "https://github.com/o2team-ambient/bubble",
   "demoSnippet": "<link href=\"//storage.jd.com/ambient/styles-bubble.css?t=1552530751000\" rel=\"stylesheet\"></link><!-- S 主体内容 -->\n  <div class=\"o2team_ambient_main\">\n    <div class=\"o2team_ambient_field\">\n      <!-- <h1>Bubble</h1> -->\n    </div>\n  </div>\n  <!-- E 主体内容 --><script src=\"//storage.jd.com/ambient/bundle-bubble.js?t=1552530751000\"></script>",
   "controlUrl": "//storage.jd.com/ambient/control-bubble.js?t=1552530751000",
-  "configUrl": "//storage.jd.com/ambient/config-bubble.js?t=1552530751000"
+  "configUrl": "//storage.jd.com/ambient/config-bubble.js?t=1552530751000",
+  "placeholderImg": "//storage.jd.com/ambient/bubble_placeholder.png?t=1554087165000",
+  "gifImg": "//storage.jd.com/ambient/bubble_motion.gif?t=1554087165000"
 }
