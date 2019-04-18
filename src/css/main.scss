@@ -1,4 +1,7 @@
 .o2team_ambient_ {
+    position: relative;
+    z-index: 999;
+    pointer-events: none;
     &field {
         position: fixed;
         top: 0;
