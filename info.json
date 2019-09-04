@@ -5,9 +5,9 @@
   "title": "bubble",
   "ambName": "泡泡",
   "github": "https://github.com/o2team-ambient/bubble",
-  "demoSnippet": "<link href=\"//storage.jd.com/ambient/styles-bubble.css?t=1566460982000\" rel=\"stylesheet\"></link><!-- S 主体内容 -->\n  <div class=\"o2team_ambient_main\">\n    <div class=\"o2team_ambient_field\">\n      <!-- <h1>Bubble</h1> -->\n    </div>\n  </div>\n  <!-- E 主体内容 --><script src=\"//storage.jd.com/ambient/bundle-bubble.js?t=1566460982000\"></script>",
-  "controlUrl": "//storage.jd.com/ambient/control-bubble.js?t=1566460982000",
-  "configUrl": "//storage.jd.com/ambient/config-bubble.js?t=1566460982000",
+  "demoSnippet": "<link href=\"//storage.jd.com/ambient/styles-bubble.css?t=1567581796000\" rel=\"stylesheet\"></link><!-- S 主体内容 -->\n  <div class=\"o2team_ambient_main\">\n    <div class=\"o2team_ambient_field\">\n      <!-- <h1>Bubble</h1> -->\n    </div>\n  </div>\n  <!-- E 主体内容 --><script src=\"//storage.jd.com/ambient/bundle-bubble.js?t=1567581796000\"></script>",
+  "controlUrl": "//storage.jd.com/ambient/control-bubble.js?t=1567581796000",
+  "configUrl": "//storage.jd.com/ambient/config-bubble.js?t=1567581796000",
   "placeholderImg": "//storage.jd.com/ambient/bubble_placeholder.png?t=1554281546000",
   "gifImg": "//storage.jd.com/ambient/bubble_motion.gif?t=1554087165000",
   "spriteImg": "//storage.jd.com/ambient/bubble_sprite.png?t=1554281546000"

@@ -107,10 +107,7 @@ class Main {
 
   reset() {
     this.num = window[O2_AMBIENT_CONFIG].particleNumber
-    this.pic = []
-    window[O2_AMBIENT_CONFIG].textures.forEach((item, idx) => {
-      this.pic.push(item.url)
-    })
+    this.pic = window[O2_AMBIENT_CONFIG].textures
     this.size = [window[O2_AMBIENT_CONFIG].size, window[O2_AMBIENT_CONFIG].size]
 
     this.$field.html('')

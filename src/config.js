@@ -15,10 +15,10 @@ window[O2_AMBIENT_CONFIG] = {
   particleNumber: 30,
   size: 150,
   textures: [
-    {name: '无色泡泡', url: NO_COLOR},
-    {name: '无色泡泡2', url: NO_COLOR_2},
-    {name: '粉色泡泡', url: PINK},
-    {name: '蓝色泡泡', url: BLUE},
-    {name: '紫色泡泡', url: PURPLE}
+    NO_COLOR,
+    NO_COLOR_2,
+    PINK,
+    BLUE,
+    PURPLE
   ]
 }

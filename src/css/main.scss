@@ -1,57 +1,64 @@
 .o2team_ambient_ {
+  &main {
     position: relative;
     z-index: 999;
     pointer-events: none;
-    &field {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow: hidden;
-        z-index: 999;
-    }
+  }
 
-    &move {
-        bottom: -100%;
-        position: absolute;
-    }
+  &field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 999;
+  }
 
-    &item {
-        // width: 70px;
-        // height: 70px;
-        // border-radius: 100%;
-        background-repeat: no-repeat;
-        background-position: center;
-        // background-size: 100% 100%;
-        background-size: contain;
-    }
+  &move {
+    bottom: -100%;
+    position: absolute;
+  }
+
+  &item {
+    // width: 70px;
+    // height: 70px;
+    // border-radius: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-size: 100% 100%;
+    background-size: contain;
+  }
 }
 
 /* Animation Keyframes */
 
 @keyframes shake {
-    0% {
-        transform: translateX(20px);
-    }
-    50% {
-        transform: translateX(-20px);
-    }
-    100% {
-        transform: translateX(20px);
-    }
+  0% {
+    transform: translateX(20px);
+  }
+
+  50% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(20px);
+  }
 }
 
 @-webkit-keyframes shake {
-    0% {
-        -webkit-transform: translateX(20px);
-    }
-    50% {
-        -webkit-transform: translateX(-20px);
-    }
-    100% {
-        -webkit-transform: translateX(20px);
-    }
+  0% {
+    -webkit-transform: translateX(20px);
+  }
+
+  50% {
+    -webkit-transform: translateX(-20px);
+  }
+
+  100% {
+    -webkit-transform: translateX(20px);
+  }
 }
 
 // @keyframes move {
@@ -64,7 +71,7 @@
 // }
 
 @keyframes scale {
-    80% {
-        transform: scale(1);
-    }
+  80% {
+    transform: scale(1);
+  }
 }
